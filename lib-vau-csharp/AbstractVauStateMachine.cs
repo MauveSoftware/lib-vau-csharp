@@ -49,7 +49,8 @@ namespace lib_vau_csharp
             byte versionByte = 2;
             byte puByte = (byte)(isPu ? 1 : 0);
             byte requestByte = GetRequestByte();
-            byte[] requestCounterBytes = BitConverter.GetBytes(GetRequestCounter()).Reverse().ToArray();
+            byte[] requestCounterBytes = BitConverter.GetBytes(GetRequestCounter());
+            Array.Reverse(requestCounterBytes);
             byte[][] headerBytes = new byte[][] { new byte[] { versionByte }, new byte[] { puByte }, new byte[] { requestByte }, requestCounterBytes, KeyId };
             byte[] header = Arrays.ConcatenateAll(headerBytes);
 

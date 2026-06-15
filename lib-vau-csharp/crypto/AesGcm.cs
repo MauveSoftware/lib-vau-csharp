@@ -87,8 +87,9 @@ namespace lib_vau_csharp.crypto
                 throw new ArgumentNullException(nameof(random), "Invalid random value!");
             }
 
-            byte[] counter = BitConverter.GetBytes(lCounter).Reverse().ToArray();   // A_24629, A_24631 -> 64 Bit encryption counter
-            return random.Concat(counter).ToArray();                                // A_24628 -> concat random and counter
+            byte[] counter = BitConverter.GetBytes(lCounter);   // A_24629, A_24631 -> 64 Bit encryption counter
+            Array.Reverse(counter);
+            return random.Concat(counter).ToArray();            // A_24628 -> concat random and counter
         }        
 
         public byte[] encryptData(byte[] clearText)
